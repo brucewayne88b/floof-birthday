@@ -1,0 +1,217 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2761
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww33400\viewh21000\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!doctype html>\
+<html lang="en">\
+<head>\
+<meta charset="utf-8" />\
+<meta name="viewport" content="width=device-width,initial-scale=1" />\
+<title>For Bubba \'97 Cozy Birthday</title>\
+\
+<!-- Handwritten fonts -->\
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Patrick+Hand&display=swap" rel="stylesheet">\
+\
+<style>\
+  /* ---------- CONFIG (edit values in JS instead of CSS where possible) ---------- */\
+  :root\{\
+    --bg1:#fff7f9;\
+    --bg2:#fff2ea;\
+    --accent:#e76fa3;\
+    --muted:#7a6b6b;\
+    --card:#fff;\
+    --maxw:920px;\
+  \}\
+\
+  html,body\{height:100%;margin:0;font-family: 'Patrick Hand', 'Dancing Script', system-ui, -apple-system, sans-serif;background: linear-gradient(135deg,var(--bg1),var(--bg2));color:#2b2b2b\}\
+  .stage\{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;box-sizing:border-box\}\
+  .wrap\{width:100%;max-width:var(--maxw);position:relative\}\
+  /* Card */\
+  .card\{\
+    background:var(--card);\
+    border-radius:18px;\
+    box-shadow: 0 14px 40px rgba(0,0,0,0.12);\
+    padding:28px;\
+    position:relative;\
+    overflow:hidden;\
+    min-height:420px;\
+  \}\
+  .header\{display:flex;gap:12px;align-items:center;margin-bottom:12px\}\
+  .badge\{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,#ffdce6,#ffe7f7);display:flex;align-items:center;justify-content:center;font-size:28px\}\
+  h1\{margin:0;font-size:28px;color:var(--accent)\}\
+  p.lead\{margin:4px 0 0;color:var(--muted);font-size:14px\}\
+  /* slides area */\
+  .slides\{position:relative;margin-top:12px;min-height:320px;display:flex;align-items:center;justify-content:center\}\
+  .slide\{position:absolute;inset:0;opacity:0;transform:translateY(12px);transition:all 520ms cubic-bezier(.2,.9,.3,1);display:flex;align-items:center;justify-content:center;padding:18px;box-sizing:border-box\}\
+  .slide.active\{opacity:1;transform:none;z-index:2\}\
+  .slide .content\{max-width:760px;text-align:center\}\
+  .handwriting\{font-family:'Dancing Script', 'Patrick Hand', serif;font-size:22px;color:#333;line-height:1.4\}\
+  /* envelope animation */\
+  .envelope\{width:320px;height:220px;border-radius:10px;background:linear-gradient(180deg,#fff,#fff0f6);border:1px solid rgba(0,0,0,0.06);position:relative;box-shadow:0 8px 20px rgba(0,0,0,0.08);cursor:pointer;overflow:visible\}\
+  .flap\{position:absolute;left:0;right:0;top:0;height:50%;background:linear-gradient(180deg,#fff5fb,#ffeef8);transform-origin:top center;border-bottom:1px solid rgba(0,0,0,0.04);transition:transform 520ms cubic-bezier(.2,.9,.3,1)\}\
+  .envelope.open .flap\{transform: rotateX(180deg) translateY(-36%);box-shadow:0 18px 30px rgba(0,0,0,0.06)\}\
+  .letter\{position:absolute;left:12px;right:12px;bottom:12px;top:16%;background:linear-gradient(180deg,#fff,#fffdf8);border-radius:6px;padding:18px;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(6px);transition:all 420ms ease\}\
+  .envelope.open .letter\{opacity:1;transform:none\}\
+  /* navigation */\
+  .controls\{display:flex;justify-content:space-between;align-items:center;margin-top:16px\}\
+  .btn\{background:var(--accent);color:#fff;padding:8px 12px;border-radius:8px;border:none;font-size:14px;cursor:pointer;box-shadow:0 6px 18px rgba(231,111,163,0.18)\}\
+  .ghost\{background:transparent;border:1px solid rgba(0,0,0,0.06);color:#333\}\
+  .page-indicator\{font-size:13px;color:var(--muted)\}\
+  /* confetti canvas */\
+  canvas.confetti\{position:fixed;inset:0;pointer-events:none;z-index:0\}\
+  /* final reveal area locked by code */\
+  .locked\{filter:blur(2px) grayscale(.03);opacity:.95;transition:filter .3s\}\
+  .lockbox\{margin-top:12px;display:flex;gap:8px;justify-content:center;align-items:center\}\
+  input.code\{padding:10px;border-radius:8px;border:1px solid #e9e3e3;font-family:inherit;font-size:15px\}\
+  /* small footer */\
+  .foot\{margin-top:14px;text-align:center;color:var(--muted);font-size:12px\}\
+  /* responsive */\
+  @media (max-width:640px)\{ .envelope\{width:260px;height:180px\} h1\{font-size:22px\} .handwriting\{font-size:18px\} \}\
+</style>\
+</head>\
+<body>\
+<div class="stage">\
+  <div class="wrap">\
+    <canvas class="confetti" id="confetti"></canvas>\
+\
+    <div class="card" id="card">\
+      <div class="header">\
+        <div class="badge">\uc0\u55356 \u57218 </div>\
+        <div>\
+          <h1>For <span id="nameTitle">Bubba</span></h1>\
+          <p class="lead">A cozy surprise \'97 click through, open the envelope, and enter our secret code to finish.</p>\
+        </div>\
+      </div>\
+\
+      <div class="slides" id="slides">\
+        <!-- Slides injected by JS -->\
+      </div>\
+\
+      <div class="controls">\
+        <div>\
+          <button class="btn ghost" id="prevBtn">\uc0\u9664  Prev</button>\
+        </div>\
+        <div class="page-indicator" id="pager">Slide 1 / 1</div>\
+        <div>\
+          <button class="btn" id="nextBtn">Next \uc0\u9654 </button>\
+        </div>\
+      </div>\
+\
+      <div class="foot">Editable in code: open this file and change the `SLIDES` array or `SECRET_CODE` variable near the top of the script.</div>\
+    </div>\
+  </div>\
+</div>\
+\
+<script>\
+/* =========================\
+   EDITABLE CONFIGURATION\
+   =========================\
+   Change these variables in this file (not the UI) to edit text, styles, and behavior:\
+   - SECRET_CODE: the string Bubba must enter to unlock final slide\
+   - SLIDES: array of objects describing slides, order, and content\
+   - TYPING_SPEED: ms per character for the handwriting typed effect\
+   - CONFETTI_AMOUNT: number of confetti pieces\
+*/\
+const SECRET_CODE = "starlight42"; // <<--- set your secret code here\
+const TYPING_SPEED = 25;            // ms per character (typing animation)\
+const CONFETTI_AMOUNT = 140;        // confetti particle count\
+\
+/* Slides definition\
+   type: "intro" | "envelope" | "message" | "final"\
+   content: text/html to display (used by message types)\
+   note: final slide will be locked until SECRET_CODE entered if locked:true\
+*/\
+const SLIDES = [\
+  \{ type: "message", title: "A little note", content: "Hey <strong>Bubba</strong> \'97 from the moment I met you, my world got softer and brighter. I made this for you." \},\
+  \{ type: "envelope", title: "Open the envelope", content: "Tap the envelope gently to open your letter." \},\
+  \{ type: "message", title: "Memories", content: "I still remember our first walk together. Your laugh \'97 that exact one \'97 folded into my favourite days." \},\
+  \{ type: "final", title: "For your eyes only", content: "Enter the secret code to reveal what I wrote for you.", locked: true \}\
+];\
+\
+/* =========================\
+   Implementation (no need to edit below unless you're comfortable)\
+   ========================= */\
+\
+const slidesRoot = document.getElementById('slides');\
+const pager = document.getElementById('pager');\
+const prevBtn = document.getElementById('prevBtn');\
+const nextBtn = document.getElementById('nextBtn');\
+const nameTitle = document.getElementById('nameTitle');\
+\
+let current = 0;\
+let slideEls = [];\
+\
+/* Helper: create a slide element for different types */\
+function createSlide(slide, index)\{\
+  const el = document.createElement('div');\
+  el.className = 'slide';\
+  if(index === 0) el.classList.add('active');\
+\
+  const inner = document.createElement('div');\
+  inner.className = 'content';\
+\
+  if(slide.type === 'message')\{\
+    inner.innerHTML = `<div>\
+      <h2 style="margin:0 0 8px;font-family:'Dancing Script', 'Patrick Hand', serif;font-size:26px;">$\{slide.title\}</h2>\
+      <div class="handwriting" data-typed>$\{slide.content\}</div>\
+    </div>`;\
+  \} else if(slide.type === 'envelope')\{\
+    inner.innerHTML = `<div>\
+      <h2 style="margin-bottom:12px;font-size:22px;">$\{slide.title\}</h2>\
+      <div class="envelope" aria-hidden="false"><div class="flap"></div>\
+        <div class="letter"><div style="padding:6px;text-align:left"><div class="handwriting">$\{slide.content\}</div></div></div>\
+      </div>\
+      <div style="margin-top:12px;color:var(--muted);font-size:13px">Click the envelope to open</div>\
+    </div>`;\
+  \} else if(slide.type === 'final')\{\
+    const lockedClass = slide.locked ? 'locked' : '';\
+    inner.innerHTML = `<div>\
+      <h2 style="margin-bottom:12px;font-size:22px;">$\{slide.title\}</h2>\
+      <div class="$\{lockedClass\}" id="finalBox">\
+        <div class="handwriting" id="finalHint">$\{slide.content\}</div>\
+      </div>\
+      <div class="lockbox">\
+        <input class="code" id="codeInput" placeholder="Enter secret code" />\
+        <button class="btn" id="unlockBtn">Unlock</button>\
+      </div>\
+      <div id="finalMessage" style="margin-top:12px;display:none;">\
+        <div class="handwriting" id="finalText"></div>\
+      </div>\
+    </div>`;\
+  \}\
+\
+  el.appendChild(inner);\
+  return el;\
+\}\
+\
+/* build slides */\
+SLIDES.forEach((s,i)=> \{\
+  const el = createSlide(s,i);\
+  slidesRoot.appendChild(el);\
+  slideEls.push(el);\
+\});\
+\
+/* set pager text */\
+function updatePager()\{\
+  pager.textContent = `Slide $\{current+1\} / $\{SLIDES.length\}`;\
+  prevBtn.disabled = (current === 0);\
+  nextBtn.disabled = (current === SLIDES.length-1);\
+\}\
+\
+/* show slide by index */\
+function showSlide(i)\{\
+  slideEls.forEach((el,idx)=> el.classList.toggle('active', idx===i));\
+  current = i;\
+  updatePager();\
+  // trigger typed animation when a message slide becomes active\
+  const typed = slideEls[i].querySelector('[data-typed]');\
+  if(typed) startTypedAnimation(typed, TYPING_SPEED);\
+  // attach envelope click\
+  const env = slideEls[i].querySelector('.envelope');\
+  if(env)\{\
+    env.onclick = ()=> \{\
+      env.classList.toggle('open');\
+}
